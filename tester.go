@@ -54,3 +54,7 @@ func (s *TestHelper) OutAssertNoErr(o error) {
 func IsNil(i interface{}) bool {
 	return i == nil
 }
+
+func IsNotNil(i interface{}) bool {
+	return i != nil
+}
