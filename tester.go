@@ -28,6 +28,14 @@ func (s *TestHelper) AssertEqual(t TestInterface, a, b interface{}) {
 	}
 }
 
+func (s *TestHelper) AssertTrue(t TestInterface, a bool) {
+	t.Helper()
+	if !a {
+		t.Error("assertion failed")
+		panic("assertion failed")
+	}
+}
+
 func (s *TestHelper) AssertNoErr(t TestInterface, o error) {
 	t.Helper()
 	if o != nil {
@@ -58,3 +66,12 @@ func IsNil(i interface{}) bool {
 func IsNotNil(i interface{}) bool {
 	return i != nil
 }
+
+func IsTrue(i interface{}) bool {
+	return i.(bool)
+}
+
+func IsFalse(i interface{}) bool {
+	return i.(bool) == false
+}
+
