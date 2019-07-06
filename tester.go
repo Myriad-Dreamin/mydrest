@@ -1,27 +1,17 @@
 package mtest
 
-type testcommon interface {
+type TestInterface interface {
 	Error(args ...interface{})
 	Errorf(format string, args ...interface{})
-	Fail()
-	FailNow()
-	Failed() bool
 	Fatal(args ...interface{})
 	Fatalf(format string, args ...interface{})
 	Helper()
-	Log(args ...interface{})
-	Logf(format string, args ...interface{})
-	Name() string
-	Skip(args ...interface{})
-	SkipNow()
-	Skipf(format string, args ...interface{})
-	Skipped() bool
 }
 
 type TestHelper struct {
 }
 
-func (s *TestHelper) Assert(t testcommon, o interface{}, f func(interface{}) bool) {
+func (s *TestHelper) Assert(t TestInterface, o interface{}, f func(interface{}) bool) {
 	t.Helper()
 	if !f(o) {
 		t.Error("assertion failed")
@@ -30,7 +20,7 @@ func (s *TestHelper) Assert(t testcommon, o interface{}, f func(interface{}) boo
 	return
 }
 
-func (s *TestHelper) AssertEqual(t testcommon, a, b interface{}) {
+func (s *TestHelper) AssertEqual(t TestInterface, a, b interface{}) {
 	t.Helper()
 	if a != b {
 		t.Error("assertion failed")
@@ -38,7 +28,7 @@ func (s *TestHelper) AssertEqual(t testcommon, a, b interface{}) {
 	}
 }
 
-func (s *TestHelper) AssertNoErr(t testcommon, o error) {
+func (s *TestHelper) AssertNoErr(t TestInterface, o error) {
 	t.Helper()
 	if o != nil {
 		t.Error(o)
