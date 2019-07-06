@@ -6,7 +6,7 @@
 package mtest
 
 import "testing"
-import qwq "github.com/Myriad-Dreamin/mdrest"
+import qwq "github.com/Myriad-Dreamin/mydrest"
 
 type MyTestHelper struct {
 	qwq.TestHelper
